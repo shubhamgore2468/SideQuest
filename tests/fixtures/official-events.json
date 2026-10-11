@@ -1,0 +1,287 @@
+{
+  "tool": {
+    "name": "search_events",
+    "title": "Search Tech Week events",
+    "description": "Search the official Tech Week calendar. This is the tool to reach for on any question about what is on, where, or when.\n\nCall `list_filters` first when the person named a category, a neighborhood or a time of day: those arguments take keys from that catalogue, and a guessed key silently returns nothing \u2014 which reads exactly like a quiet week and will have you report the wrong answer confidently.\n\nEvery result carries the host's own one-line description and a link to the event's page on tech-week.com. Hand those links over directly \u2014 the page has the full description and the RSVP button, and the link never expires. There is no second call to make.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "description": "Free text matched against event name, host and company. Keep it to the distinctive words \u2014 \"climate\", \"a16z\" \u2014 and put anything that is a date, a city or a category in its own argument instead, where it filters exactly.",
+          "type": "string"
+        },
+        "city": {
+          "description": "Restrict to these cities.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "City slug from `list_cities`, e.g. \"sf\". Omit to search every city."
+          }
+        },
+        "date": {
+          "description": "A single day, YYYY-MM-DD. One day only: there is no range. For \"this weekend\", call twice.",
+          "type": "string"
+        },
+        "theme": {
+          "description": "Theme keys from `list_filters`. Keys, not labels \u2014 an invented value matches nothing and is indistinguishable from a quiet week.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "format": {
+          "description": "Format keys from `list_filters` (dinner, happy hour, panel\u2026).",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "neighborhood": {
+          "description": "Neighborhood keys from `list_filters`.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "timeOfDay": {
+          "description": "Time-bucket keys from `list_filters` (morning, evening\u2026).",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "host": {
+          "description": "Host keys from `list_filters`.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sponsor": {
+          "description": "Sponsor keys from `list_filters`.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "track": {
+          "description": "Curated track keys from `list_filters` \u2014 editor-picked collections.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "registration": {
+          "description": "Filter by the same values an event's `registration` reports. Pass [\"open\"] when the person intends to actually attend \u2014 it excludes events that are full or waitlisted. Pass [\"open\", \"waitlist\"] to include the ones with a queue. `invite_only` cannot be filtered on.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "open",
+              "waitlist",
+              "full",
+              "closed",
+              "unknown"
+            ]
+          }
+        },
+        "featuredOnly": {
+          "description": "Only editorially featured events. A good first call when someone has no specific ask.",
+          "type": "boolean"
+        },
+        "sort": {
+          "description": "Default \"time\", which is almost always what you want.",
+          "type": "string",
+          "enum": [
+            "time",
+            "name"
+          ]
+        },
+        "direction": {
+          "description": "Default \"asc\".",
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ]
+        },
+        "limit": {
+          "description": "Results per page, 1\u201375, default 20. Out-of-range values are clamped, not rejected.",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "page": {
+          "description": "1-based. `hasMore` tells you when to ask for the next one.",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        }
+      }
+    },
+    "annotations": {
+      "title": "Search Tech Week events",
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": true
+    }
+  },
+  "events": [
+    {
+      "id": "89b49964-6de2-4baf-bb6c-a1280d09ccf8",
+      "name": "ur +1 is a stranger",
+      "city": "Los Angeles",
+      "citySlug": "la",
+      "date": "2026-10-12",
+      "dayOfWeek": "Monday",
+      "startTime": "00:00",
+      "startsAt": "2026-10-12T07:00:00.000Z",
+      "endDate": "2026-10-18",
+      "endTime": "23:45",
+      "endsAt": "2026-10-19T06:45:00.000Z",
+      "timeZone": "America/Los_Angeles",
+      "timeOfDay": "Evening",
+      "venue": "Virtual (LA)",
+      "neighborhoods": [
+        "Virtual (LA)"
+      ],
+      "hosts": [
+        "NEXA"
+      ],
+      "themes": [
+        "AI",
+        "B2C / Consumer",
+        "Creators"
+      ],
+      "formats": [
+        "Experiential",
+        "Matchmaking",
+        "Networking"
+      ],
+      "sponsors": [],
+      "isFeatured": false,
+      "imageUrl": "https://cdn.tech-week.com/events/89b49964-6de2-4baf-bb6c-a1280d09ccf8/f09ff1ac76cfb550b1eb9ce97864514ea2d9c0adb5fd10f08e9883d530363854-800.webp",
+      "registration": "open",
+      "eventUrl": "https://www.tech-week.com/calendar/la/events/ur-1-is-a-stranger-89b49964-6de2-4baf-bb6c-a1280d09ccf8?src=mcp",
+      "excerpt": "somewhere in la this week, someone you should know is going to the same event as you. maybe your next hire, customer, investor, or collaborator. NEXA thinks you two should meet.",
+      "description": null,
+      "summary": "ur +1 is a stranger, hosted by NEXA, on Monday, October 12 at 12 AM, in Virtual (LA), Los Angeles."
+    },
+    {
+      "id": "51595ffa-0a4f-4bb5-9732-91d4b74e0ea0",
+      "name": "Ride the Olympic Oval",
+      "city": "Los Angeles",
+      "citySlug": "la",
+      "date": "2026-10-12",
+      "dayOfWeek": "Monday",
+      "startTime": "06:00",
+      "startsAt": "2026-10-12T13:00:00.000Z",
+      "endDate": "2026-10-12",
+      "endTime": "09:00",
+      "endsAt": "2026-10-12T16:00:00.000Z",
+      "timeZone": "America/Los_Angeles",
+      "timeOfDay": "Morning",
+      "venue": "Carson",
+      "neighborhoods": [
+        "Carson"
+      ],
+      "hosts": [
+        "Assiduity AI + Capital Risk Management"
+      ],
+      "themes": [
+        "AI",
+        "Fundraising / Investing",
+        "Infrastructure"
+      ],
+      "formats": [
+        "Experiential"
+      ],
+      "sponsors": [],
+      "isFeatured": false,
+      "imageUrl": "https://cdn.tech-week.com/events/51595ffa-0a4f-4bb5-9732-91d4b74e0ea0/5e954b20dd86bc07d6fb9d2de52a6c014b7f99d0935191f8188996e1ec91825e-800.webp",
+      "registration": "open",
+      "eventUrl": "https://www.tech-week.com/calendar/la/events/ride-the-olympic-oval-51595ffa-0a4f-4bb5-9732-91d4b74e0ea0?src=mcp",
+      "excerpt": "Start LA Tech Week on the track. Join us at the VELO Sports Center at Dignity Health Sports Park for a private track-cycling experience on the 250-meter indoor velodrome: track\u2026",
+      "description": null,
+      "summary": "Ride the Olympic Oval, hosted by Assiduity AI + Capital Risk Management, on Monday, October 12 at 6 AM, in Carson, Los Angeles."
+    },
+    {
+      "id": "52706373-f3eb-45a6-a1f2-2272896f1d4d",
+      "name": "Money Memories Live: The Founder Stories Behind Billion-Dollar Decisions",
+      "city": "Los Angeles",
+      "citySlug": "la",
+      "date": "2026-10-12",
+      "dayOfWeek": "Monday",
+      "startTime": "18:00",
+      "startsAt": "2026-10-13T01:00:00.000Z",
+      "endDate": null,
+      "endTime": null,
+      "endsAt": null,
+      "timeZone": "America/Los_Angeles",
+      "timeOfDay": "Evening",
+      "venue": "Playa del Rey",
+      "neighborhoods": [
+        "Playa del Rey"
+      ],
+      "hosts": [
+        "Armada"
+      ],
+      "themes": [
+        "Fundraising / Investing",
+        "Women-focused"
+      ],
+      "formats": [
+        "Pitch Event / Demo Day"
+      ],
+      "sponsors": [],
+      "isFeatured": false,
+      "imageUrl": "https://cdn.tech-week.com/events/52706373-f3eb-45a6-a1f2-2272896f1d4d/55926372256902838c651c9bbaa9b6a4284623b700150638671030eba3c05e66-800.webp",
+      "registration": "waitlist",
+      "eventUrl": "https://www.tech-week.com/calendar/la/events/money-memories-live-the-founder-stories-behind-billion-dollar-decisions-52706373-f3eb-45a6-a1f2-2272896f1d4d?src=mcp",
+      "excerpt": "Money Memories Live is a live recording of the NPR-distributed podcast exploring the personal financial experiences that shape entrepreneurs, investors, and executives.",
+      "description": null,
+      "summary": "Money Memories Live: The Founder Stories Behind Billion-Dollar Decisions, hosted by Armada, on Monday, October 12 at 6 PM, in Playa del Rey, Los Angeles."
+    },
+    {
+      "id": "5cd07b6c-7f5b-40b4-92c3-8dcfde5e32b3",
+      "name": "Women backing Women",
+      "city": "Los Angeles",
+      "citySlug": "la",
+      "date": "2026-10-12",
+      "dayOfWeek": "Monday",
+      "startTime": "09:30",
+      "startsAt": "2026-10-12T16:30:00.000Z",
+      "endDate": "2026-10-12",
+      "endTime": "12:00",
+      "endsAt": "2026-10-12T19:00:00.000Z",
+      "timeZone": "America/Los_Angeles",
+      "timeOfDay": "Morning",
+      "venue": "Downtown (LA)",
+      "neighborhoods": [
+        "Downtown (LA)"
+      ],
+      "hosts": [
+        "Sisters female founders initiative"
+      ],
+      "themes": [
+        "Fundraising / Investing",
+        "International / Expansion",
+        "Women-focused"
+      ],
+      "formats": [
+        "Breakfast, Brunch or Lunch",
+        "Networking",
+        "Panel / Fireside Chat"
+      ],
+      "sponsors": [],
+      "isFeatured": false,
+      "imageUrl": "https://cdn.tech-week.com/events/5cd07b6c-7f5b-40b4-92c3-8dcfde5e32b3/a7a2bb6636b73f2ccea90a005000028d6e4b4f960228fbd3804b32e41805c0f9-800.webp",
+      "registration": "open",
+      "eventUrl": "https://www.tech-week.com/calendar/la/events/women-backing-women-5cd07b6c-7f5b-40b4-92c3-8dcfde5e32b3?src=mcp",
+      "excerpt": "\u2615 Women Backing Women: LA Tech Week Edition Capital, Conviction, and the Future of Female-Focused Investing The data is clear, but the funding gap remains wide.",
+      "description": null,
+      "summary": "Women backing Women, hosted by Sisters female founders initiative, on Monday, October 12 at 9:30 AM, in Downtown (LA), Los Angeles."
+    }
+  ]
+}
