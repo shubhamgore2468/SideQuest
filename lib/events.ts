@@ -13,6 +13,13 @@ export const neighborhoods: Record<string, [number, number]> = {
   'South LA': [33.989,-118.291], 'Mid City': [34.041,-118.35], Brentwood: [34.052,-118.473],
 };
 const base = 'https://www.tech-week.com/calendar/la';
+export function techWeekLink(event: WeekEvent): string {
+  try {
+    const url = new URL(event.sourceUrl);
+    if (url.protocol === 'https:' && ['www.tech-week.com', 'tech-week.com'].includes(url.hostname)) return url.href;
+  } catch { /* Calendar imports may not contain an official listing URL. */ }
+  return base;
+}
 function event(id:string,title:string,host:string,date:string,time:string,end:string|null,neighborhood:string,format:string,tags:string[],description:string,audience:string,slug?:string): WeekEvent {
   const coordinate=neighborhoods[neighborhood];
   const sourceUrl=slug ? `${base}/events/${slug}` : `${base}?host=${encodeURIComponent(id)}`;

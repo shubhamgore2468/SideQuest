@@ -1,7 +1,8 @@
 import { sessionOwner } from '@/lib/session';
+import { allowedRequestOrigin } from '@/lib/request-origin';
 export const json=(value:unknown,status=200)=>Response.json(value,{status,headers:{'Cache-Control':'no-store','Referrer-Policy':'no-referrer','X-Content-Type-Options':'nosniff'}});
 export async function identity(request?:Request) {
- if(request){const origin=request.headers.get('origin'); if(origin && origin!==new URL(request.url).origin) throw new HttpError(403,'This request is not allowed.'); if(request.headers.get('sec-fetch-site')==='cross-site') throw new HttpError(403,'This request is not allowed.');}
+ if(request && !allowedRequestOrigin(request)) throw new HttpError(403,'This request is not allowed. Reload Sidequest and try again.');
  return sessionOwner();
 }
 export class HttpError extends Error { constructor(public status:number,message:string){super(message);} }

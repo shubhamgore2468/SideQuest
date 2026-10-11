@@ -4,6 +4,7 @@ import { json } from '@/lib/api';
 import { CALENDAR_SCOPES } from '@/lib/calendar-scopes';
 import { CalendarError, readGoogleCalendarSnapshot } from '@/lib/google-calendar';
 import { isGoogleAccount } from '@/lib/google-account';
+import { locateCalendarEvents } from '@/lib/calendar-locations';
 
 export async function GET() {
   const requestId = crypto.randomUUID();
@@ -38,6 +39,8 @@ export async function GET() {
     if (!token) return fail(403, 'Grant Google Calendar read-only access to sync your events.', 'CALENDAR_SCOPES_MISSING', true);
     stage = 'Read Google Calendar';
     const sync = await readGoogleCalendarSnapshot(token.token);
+    stage = 'Locate calendar venues';
+    sync.events = await locateCalendarEvents(sync.events);
     const account = user.externalAccounts.find(item => item.id === token.externalAccountId || item.externalAccountId === token.externalAccountId);
     return json({ ...sync, accountEmail: account?.emailAddress || '', syncedAt: new Date().toISOString(),
       diagnostics: { requestId, stage: 'Complete', elapsedMs: Date.now() - started } });
