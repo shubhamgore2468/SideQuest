@@ -8,7 +8,7 @@ import { CALENDAR_SCOPES } from '@/lib/calendar-scopes';
 import { findGoogleAccount } from '@/lib/google-account';
 
 export function SidequestSession({ authEnabled }: { authEnabled: boolean }) {
-  return authEnabled ? <AuthenticatedSidequest /> : <Sidequest />;
+  return authEnabled ? <AuthenticatedSidequest /> : <Sidequest accountControls={<Button variant="outline" disabled title="Sign-in is temporarily unavailable on this deployment.">Sign in unavailable</Button>} />;
 }
 
 function AuthenticatedSidequest() {
